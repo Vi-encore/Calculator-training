@@ -1,0 +1,40 @@
+* {
+  font-family: $main;
+}
+
+html {
+  width: 100vw;
+  height: 100vh;
+
+  background-image: url("/img/bg-img.jpg"),
+    linear-gradient(to left bottom, #f9b5b7, #eca5be, #d49ac9, #af93d3, #7990d7);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.wrap {
+  width: $s-350;
+  margin: 75px $auto;
+}
+
+p {
+  color: $white;
+}
+
+button {
+  color: $white;
+  background-color: transparent;
+  border: 0;
+  font-size: $em-1-5;
+  font-weight: $mid;
+}
+
+button:hover,
+button:active {
+  font-weight: $large;
+  font-size: $em-2;
+}
+
+.hidden {
+  display: none;
+}

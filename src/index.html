@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Calculator</title>
+    <link rel="shortcut icon" href="icon.png" type="image/png" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="calc">
+        <div class="calc__window">
+          <div class="calc__change-bg">
+            <div class="calc__change-bg__btn"></div>
+          </div>
+          <p class="calc__history hidden">23</p>
+          <p class="calc__total focus">23</p>
+        </div>
+        <div class="calc__buttons">
+          <div class="calc__grid">
+            <div class="calc__btns--func">
+              <button class="calc__btn js-btn-del-last btn">C</button
+              ><button class="calc__btn js-btn-percent btn">%</button
+              ><button class="calc__btn js-btn-delete btn">
+                <div class="delete__outline">
+                  <i class="fa-solid fa-delete-left"></i>
+                </div>
+              </button>
+            </div>
+            <div class="calc__btns--operations">
+              <button class="calc__btn js-btn-operant btn">/</button
+              ><button class="calc__btn js-btn-operant btn">*</button
+              ><button class="calc__btn js-btn-operant btn">-</button
+              ><button class="calc__btn js-btn-operant btn">+</button
+              ><button class="calc__btn btn" id="js-equal">=</button>
+            </div>
+            <div class="calc__btns--nums">
+              <button class="calc__btn js-btn-num btn" id="btn-9">9</button
+              ><button class="calc__btn js-btn-num btn" id="btn-8">8</button
+              ><button class="calc__btn js-btn-num btn" id="btn-7">7</button
+              ><button class="calc__btn js-btn-num btn" id="btn-6">6</button
+              ><button class="calc__btn js-btn-num btn" id="btn-5">5</button
+              ><button class="calc__btn js-btn-num btn" id="btn-4">4</button
+              ><button class="calc__btn js-btn-num btn" id="btn-3">3</button
+              ><button class="calc__btn js-btn-num btn" id="btn-2">2</button
+              ><button class="calc__btn js-btn-num btn" id="btn-1">1</button
+              ><button class="calc__btn js-btn-num btn" id="btn-0">0</button
+              ><button class="calc__btn js-btn-num btn" id="btn-00">00</button
+              ><button class="calc__btn js-btn-num btn" id="btn-point">
+                .
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://kit.fontawesome.com/9526baa9cb.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
