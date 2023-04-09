@@ -1,5 +1,3 @@
-// const { Logger } = require("sass");
-
 const numBtns = document.querySelectorAll(".js-btn-num");
 const operantBtns = document.querySelectorAll(".js-btn-operant");
 const funcBtns = document.querySelectorAll(".js-btn-func");
@@ -43,24 +41,46 @@ operantBtns.forEach((btn) => {
         e.target.innerHTML
       );
       fieldTotal.innerHTML = modifiedTotal;
+    } else if (/\.$/.test(fieldTotal.innerHTML)) {
+      let modifiedTotal = fieldTotal.innerHTML.replace(/\.$/, "");
+      fieldTotal.innerHTML = `${modifiedTotal}${e.target.innerHTML}`;
     } else {
       fieldTotal.innerHTML += btn.innerHTML;
     }
   });
 });
 
-// pointBtn.addEventListener("click", (e) => {
-//   if (/\.$/.test(fieldTotal.innerHTML)) {
-//     console.log(fieldTotal.innerHTML);
-//     let modifiedTotal = fieldTotal.innerHTML.replace(/\.$/, e.target.innerHTML);
+pointBtn.addEventListener("click", (e) => {
+  if (/\.$/.test(fieldTotal.innerHTML)) {
+    let modifiedTotal = fieldTotal.innerHTML.replace(/\.$/, e.target.innerHTML);
 
-//     fieldTotal.innerHTML = modifiedTotal;
-//   } else if (/[-+*/]$/.test(fieldTotal.innerHTML)) {
-//     fieldTotal.innerHTML += "";
-//   } else {
-//     fieldTotal.innerHTML += pointBtn.innerHTML;
-//   }
-// });
+    fieldTotal.innerHTML = modifiedTotal;
+  } else if (/[-+*/]$/.test(fieldTotal.innerHTML)) {
+    fieldTotal.innerHTML += `0${e.target.innerHTML}`;
+  }
+  // else if (/\./.test(fieldTotal.innerHTML)) {
+  //   console.log("here");
+  // }
+  else {
+    fieldTotal.innerHTML += pointBtn.innerHTML;
+  }
+
+  let splitedTotal = fieldTotal.innerHTML.split(/[-+*/]/);
+  // console.log(splitedTotal);
+  for (let i = 0; i < splitedTotal.length; i++) {
+    if (/(?<=\..*?)\./g.test(splitedTotal[i])) {
+      let newNum = splitedTotal[i].replace(/(?<=\..*?)\./g, "");
+      // num.replace(/(?<=\..*?)\./g, "");
+      // console.log(newNum);
+      splitedTotal.pop(splitedTotal[i]);
+      splitedTotal.push(newNum);
+      console.log(splitedTotal[i]);
+      // console.log("here");
+    }
+  }
+  console.log(splitedTotal);
+  // let symbol = '
+});
 
 btnDeleteAll.addEventListener("click", () => {
   fieldTotal.innerHTML = localStorage.getItem("initialVal");
