@@ -65,7 +65,8 @@
     -webkit-overflow-scrolling: touch;
     overflow-y: hidden;
   }
-  &__total {
+  &__total,
+  &__inputTotal {
     height: 100%;
   }
 

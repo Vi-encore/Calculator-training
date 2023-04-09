@@ -40,6 +40,7 @@ window.addEventListener("load", (e) => {
   localStorage.setItem("math-operation", 0);
   fieldTotal.innerHTML = localStorage.getItem("initialVal");
   fieldHistory.classList.add("hidden");
+  localStorage.setItem("equasion", 0);
 });
 
 //number btns
@@ -68,8 +69,8 @@ operantBtns.forEach((btn) => {
         e.target.innerHTML
       );
       fieldTotal.innerHTML = modifiedTotal;
-    } else if (/\.$/.test(fieldTotal.innerHTML)) {
-      let modifiedTotal = fieldTotal.innerHTML.replace(/\.$/, "");
+    } else if (/[%\.]$/.test(fieldTotal.innerHTML)) {
+      let modifiedTotal = fieldTotal.innerHTML.replace(/[%\.]$/, "");
       fieldTotal.innerHTML = `${modifiedTotal}${e.target.innerHTML}`;
     } else {
       fieldTotal.innerHTML += btn.innerHTML;
@@ -122,21 +123,21 @@ pointBtn.addEventListener("click", (e) => {
 //percent btn
 
 btnPercent.addEventListener("click", (e) => {
-  console.log(e.target.innerHTML);
+  // console.log(e);
+
+  // console.log(e.target.innerHTML);
   if (/[%]$/.test(fieldTotal.innerHTML)) {
     let modifiedTotal = fieldTotal.innerHTML.replace(
       /[%]$/,
       e.target.innerHTML
     );
-
     fieldTotal.innerHTML = modifiedTotal;
+  } else if (/(?<=.)[%]/g.test(fieldTotal.innerHTML)) {
+    ///////
+    console.log(true);
   } else if (/[-+*/]$/.test(fieldTotal.innerHTML)) {
     fieldTotal.innerHTML += `0${e.target.innerHTML}`;
-  }
-  // else if (/\./.test(fieldTotal.innerHTML)) {
-  //   console.log("here");
-  // }
-  else {
+  } else {
     fieldTotal.innerHTML += btnPercent.innerHTML;
   }
 });
@@ -147,6 +148,7 @@ btnDeleteAll.addEventListener("click", () => {
   fieldTotal.innerHTML = localStorage.getItem("initialVal");
   localStorage.setItem("math-operation", 0);
   fieldHistory.classList.add("hidden");
+  localStorage.setItem("equasion", 0);
 });
 
 //delete one char btn
@@ -162,16 +164,73 @@ btnDelOne.addEventListener("click", (e) => {
   }
 });
 
+//equal btn
+
 equalBtn.addEventListener("click", () => {
-  let stringToNum = eval(fieldTotal.innerHTML);
+  let prob;
 
-  localStorage.setItem("math-operation", fieldTotal.innerHTML);
-  let result = Number(stringToNum);
+  if (fieldTotal.innerHTML.includes("%")) {
+    let equation = fieldTotal.innerHTML.split("%");
+    for (let i = 0; i < equation.length; i++) {
+      prob = `${equation[i - 1]}*${equation[i] / 100}`;
+    }
+  } else {
+    prob = eval(fieldTotal.innerHTML);
+  }
 
-  fieldHistory.innerHTML = localStorage.getItem("math-operation");
-  fieldHistory.classList.remove("hidden");
-  fieldTotal.innerHTML = result;
+  localStorage.setItem("equasion", prob);
+  if (localStorage.getItem("equasion").includes("NaN")) {
+    localStorage.setItem(`equasion`, 0);
+    alert("Operation can`t be done");
+    localStorage.setItem("math-operation", 0);
+    fieldHistory.classList.add("hidden");
+    fieldTotal.innerHTML = localStorage.getItem("initialVal");
+  } else {
+    let stringToNum = eval(localStorage.getItem("equasion"));
+
+    localStorage.setItem("math-operation", fieldTotal.innerHTML);
+    let result = Number(stringToNum);
+
+    fieldHistory.innerHTML = localStorage.getItem("math-operation");
+    fieldHistory.classList.remove("hidden");
+    fieldTotal.innerHTML = result;
+  }
 });
+
+////////control mainfild length
+
+// fieldTotal.addEventListener("change", () => {
+//   console.log("working");
+
+//   if (fieldTotal.innerHTML.length > 10) {
+//     fieldTotal.classList.add("font-min");
+//   } else {
+//     fieldTotal.classList.remove("font-min");
+//   }
+// });
+
+// function changeClass() {
+//   // if (fieldTotal.innerHTML.length > 10) {
+//   //   fieldTotal.classList.add("font-min");
+//   // } else {
+//   //   fieldTotal.classList.remove("font-min");
+
+//   //   // fieldTotal.textContent = "red";
+//   // }
+//   fieldTotal.classList.toggle("font-min");
+// }
+
+// var config = { attributes: true, childList: true, subtree: true };
+
+// var observer = new MutationObserver((list) => {
+//   console.log(list[0].target.textContent);
+//   if (list[0].target.textContent.length > 10) {
+//     // fieldTotal.classList.add("font-min");
+//   }
+//   // changeClass();
+// });
+
+// observer.observe(fieldTotal, config);
 
 
 /***/ }),

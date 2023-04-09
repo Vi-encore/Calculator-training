@@ -109,7 +109,7 @@ button:active {
   -webkit-overflow-scrolling: touch;
   overflow-y: hidden;
 }
-.calc__total {
+.calc__total, .calc__inputTotal {
   height: 100%;
 }
 .calc__history {
