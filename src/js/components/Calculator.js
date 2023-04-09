@@ -65,23 +65,42 @@ pointBtn.addEventListener("click", (e) => {
     fieldTotal.innerHTML += pointBtn.innerHTML;
   }
 
-  let splitedTotal = fieldTotal.innerHTML.split(/[-+*/]/);
+  // ////////////////////// repeating dots issue
+  // let splitedTotal = fieldTotal.innerHTML.split(/[-+*/]/);
   // console.log(splitedTotal);
-  for (let i = 0; i < splitedTotal.length; i++) {
-    if (/(?<=\..*?)\./g.test(splitedTotal[i])) {
-      let newNum = splitedTotal[i].replace(/(?<=\..*?)\./g, "");
-      // num.replace(/(?<=\..*?)\./g, "");
-      // console.log(newNum);
-      splitedTotal.pop(splitedTotal[i]);
-      splitedTotal.push(newNum);
-      console.log(splitedTotal[i]);
-      // console.log("here");
-    }
-  }
-  console.log(splitedTotal);
+
+  // for (let i = 0; i < splitedTotal.length; i++) {
+  //   if (/(?<=\..*?)\./g.test(splitedTotal[i])) {
+  //     let newNum = splitedTotal[i].replace(/(?<=\..*?)\./g, "");
+  //     // num.replace(/(?<=\..*?)\./g, "");
+  //     // console.log(newNum);
+  //     splitedTotal.pop(splitedTotal[i]);
+  //     splitedTotal.push(newNum);
+  //     console.log(splitedTotal[i]);
+  //     // console.log("here");
+
+  //     let result = `${splitedTotal[i]}${/[-+*/]/}`;
+  //     result += result;
+  //     console.log(result);
+  //   }
+  // }
+
+  // console.log(splitedTotal);
   // let symbol = '
+  // ////////////////
 });
 
 btnDeleteAll.addEventListener("click", () => {
   fieldTotal.innerHTML = localStorage.getItem("initialVal");
+});
+
+btnDelOne.addEventListener("click", (e) => {
+  let modifiedTotal;
+  if (fieldTotal.innerHTML.length === 1) {
+    modifiedTotal = fieldTotal.innerHTML.replace(/.$/, "0");
+    fieldTotal.innerHTML = modifiedTotal;
+  } else {
+    modifiedTotal = fieldTotal.innerHTML.replace(/.$/, "");
+    fieldTotal.innerHTML = modifiedTotal;
+  }
 });
