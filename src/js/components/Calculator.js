@@ -15,6 +15,7 @@ const equalBtn = document.querySelector("#js-equal");
 window.addEventListener("load", (e) => {
   // localStorage.clear()
   localStorage.setItem("initialVal", 0);
+  localStorage.setItem("math-operation", 0);
   fieldTotal.innerHTML = localStorage.getItem("initialVal");
   fieldHistory.classList.add("hidden");
 });
@@ -96,10 +97,34 @@ pointBtn.addEventListener("click", (e) => {
   // ////////////////
 });
 
+//percent btn
+
+btnPercent.addEventListener("click", (e) => {
+  console.log(e.target.innerHTML);
+  if (/[%]$/.test(fieldTotal.innerHTML)) {
+    let modifiedTotal = fieldTotal.innerHTML.replace(
+      /[%]$/,
+      e.target.innerHTML
+    );
+
+    fieldTotal.innerHTML = modifiedTotal;
+  } else if (/[-+*/]$/.test(fieldTotal.innerHTML)) {
+    fieldTotal.innerHTML += `0${e.target.innerHTML}`;
+  }
+  // else if (/\./.test(fieldTotal.innerHTML)) {
+  //   console.log("here");
+  // }
+  else {
+    fieldTotal.innerHTML += btnPercent.innerHTML;
+  }
+});
+
 //delete all btn
 
 btnDeleteAll.addEventListener("click", () => {
   fieldTotal.innerHTML = localStorage.getItem("initialVal");
+  localStorage.setItem("math-operation", 0);
+  fieldHistory.classList.add("hidden");
 });
 
 //delete one char btn
@@ -113,4 +138,15 @@ btnDelOne.addEventListener("click", (e) => {
     modifiedTotal = fieldTotal.innerHTML.replace(/.$/, "");
     fieldTotal.innerHTML = modifiedTotal;
   }
+});
+
+equalBtn.addEventListener("click", () => {
+  let stringToNum = eval(fieldTotal.innerHTML);
+
+  localStorage.setItem("math-operation", fieldTotal.innerHTML);
+  let result = Number(stringToNum);
+
+  fieldHistory.innerHTML = localStorage.getItem("math-operation");
+  fieldHistory.classList.remove("hidden");
+  fieldTotal.innerHTML = result;
 });

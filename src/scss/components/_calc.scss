@@ -60,11 +60,17 @@
     font-weight: $large;
     color: $whitish;
     width: 100%;
-    height: 100%;
     text-align: end;
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
     overflow-y: hidden;
+  }
+  &__total {
+    height: 100%;
+  }
+
+  &__history {
+    height: 50%;
   }
 
   &__history::-webkit-scrollbar,

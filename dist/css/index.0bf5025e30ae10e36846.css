@@ -104,11 +104,16 @@ button:active {
   font-weight: 600;
   color: rgba(236, 236, 236, 0.8235294118);
   width: 100%;
-  height: 100%;
   text-align: end;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
   overflow-y: hidden;
+}
+.calc__total {
+  height: 100%;
+}
+.calc__history {
+  height: 50%;
 }
 .calc__history::-webkit-scrollbar, .calc__total::-webkit-scrollbar {
   height: 0;
