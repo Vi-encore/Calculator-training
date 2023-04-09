@@ -29,6 +29,7 @@
     align-items: flex-end;
     padding-bottom: $em;
     padding-right: $em;
+    padding-left: $em;
   }
 
   &__change-bg {
@@ -54,10 +55,29 @@
 
   &__history,
   &__total {
+
     vertical-align: bottom;
     font-size: $em-1-5;
     font-weight: $large;
     color: $whitish;
+    width: 100%;
+    height: 100%;
+    text-align: end;
+    overflow-x:scroll;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: hidden;
+  }
+
+  &__history::-webkit-scrollbar,
+  &__total::-webkit-scrollbar
+   {
+   height: 0;
+  }
+    
+
+
+  .font-min {
+    font-size: $em;
   }
 
   &__buttons {
