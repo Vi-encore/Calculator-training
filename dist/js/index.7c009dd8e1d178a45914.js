@@ -41,6 +41,8 @@ window.addEventListener("load", (e) => {
   fieldHistory.classList.add("hidden");
 });
 
+//number btns
+
 numBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     if (fieldTotal.innerHTML === "0") {
@@ -54,6 +56,8 @@ numBtns.forEach((btn) => {
     }
   });
 });
+
+//mathematical symbols btns
 
 operantBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
@@ -71,6 +75,8 @@ operantBtns.forEach((btn) => {
     }
   });
 });
+
+//point btn
 
 pointBtn.addEventListener("click", (e) => {
   if (/\.$/.test(fieldTotal.innerHTML)) {
@@ -112,9 +118,13 @@ pointBtn.addEventListener("click", (e) => {
   // ////////////////
 });
 
+//delete all btn
+
 btnDeleteAll.addEventListener("click", () => {
   fieldTotal.innerHTML = localStorage.getItem("initialVal");
 });
+
+//delete one char btn
 
 btnDelOne.addEventListener("click", (e) => {
   let modifiedTotal;
