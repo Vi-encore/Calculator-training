@@ -55,7 +55,6 @@
 
   &__history,
   &__total {
-
     vertical-align: bottom;
     font-size: $em-1-5;
     font-weight: $large;
@@ -63,18 +62,15 @@
     width: 100%;
     height: 100%;
     text-align: end;
-    overflow-x:scroll;
+    overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
     overflow-y: hidden;
   }
 
   &__history::-webkit-scrollbar,
-  &__total::-webkit-scrollbar
-   {
-   height: 0;
+  &__total::-webkit-scrollbar {
+    height: 0;
   }
-    
-
 
   .font-min {
     font-size: $em;

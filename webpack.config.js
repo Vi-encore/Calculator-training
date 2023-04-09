@@ -59,7 +59,7 @@ module.exports = {
       "@": path.resolve(__dirname, "src"),
       "@scss": path.resolve(__dirname, "src/scss"),
       "@components": path.resolve(__dirname, "src/js/components"),
-      // "@img": path.resolve(__dirname, "src/img")
+      "@img": path.resolve(__dirname, "src/img"),
     },
   },
 };

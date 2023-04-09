@@ -21,19 +21,35 @@
         <div class="calc__buttons">
           <div class="calc__grid">
             <div class="calc__btns--func">
-              <button class="calc__btn js-btn-del-last btn">C</button
+              <button class="calc__btn js-btn-delete btn">C</button
               ><button class="calc__btn js-btn-percent btn">%</button
-              ><button class="calc__btn js-btn-delete btn">
+              ><button class="calc__btn js-btn-del-last btn">
                 <div class="delete__outline">
                   <i class="fa-solid fa-delete-left"></i>
                 </div>
               </button>
             </div>
             <div class="calc__btns--operations">
-              <button class="calc__btn js-btn-operant btn"  >/</button
-              ><button class="calc__btn js-btn-operant btn" >*</button
-              ><button class="calc__btn js-btn-operant btn" >-</button
-              ><button class="calc__btn js-btn-operant btn" >+</button
+              <button
+                class="calc__btn js-btn-operant btn"
+                data-symbol="symbol-/"
+              >
+                /</button
+              ><button
+                class="calc__btn js-btn-operant btn"
+                data-symbol="symbol-*"
+              >
+                *</button
+              ><button
+                class="calc__btn js-btn-operant btn"
+                data-symbol="symbol--"
+              >
+                -</button
+              ><button
+                class="calc__btn js-btn-operant btn"
+                data-symbol="symbol-+"
+              >
+                +</button
               ><button class="calc__btn btn" id="js-equal">=</button>
             </div>
             <div class="calc__btns--nums">
@@ -48,7 +64,9 @@
               ><button class="calc__btn js-btn-num btn" id="btn-1">1</button
               ><button class="calc__btn js-btn-num btn" id="btn-0">0</button
               ><button class="calc__btn js-btn-num btn" id="btn-00">00</button
-              ><button class="calc__btn js-btn-num btn" id="btn-point">.</button>
+              ><button class="calc__btn js-btn-num btn" id="btn-point">
+                .
+              </button>
             </div>
           </div>
         </div>
