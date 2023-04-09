@@ -150,7 +150,7 @@ equalBtn.addEventListener("click", () => {
   if (fieldTotal.innerHTML.includes("%")) {
     let equation = fieldTotal.innerHTML.split("%");
     for (let i = 0; i < equation.length; i++) {
-      prob = `${equation[i - 1]}*${equation[i] / 100}`;
+      let oper = (prob = `${equation[i - 1]}*${equation[i]}/100`);
     }
   } else {
     prob = eval(fieldTotal.innerHTML);
