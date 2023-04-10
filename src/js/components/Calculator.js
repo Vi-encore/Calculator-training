@@ -12,6 +12,8 @@ const btnDeleteAll = document.querySelector(".js-btn-delete");
 const pointBtn = document.querySelector("#btn-point");
 const equalBtn = document.querySelector("#js-equal");
 
+let checker = false;
+
 window.addEventListener("load", (e) => {
   // localStorage.clear()
   localStorage.setItem("initialVal", 0);
@@ -41,6 +43,8 @@ numBtns.forEach((btn) => {
 
 operantBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
+    checker = false;
+
     if (/[-+*/]$/.test(fieldTotal.innerHTML)) {
       let modifiedTotal = fieldTotal.innerHTML.replace(
         /[-+*/]$/,
@@ -59,51 +63,31 @@ operantBtns.forEach((btn) => {
 //point btn
 
 pointBtn.addEventListener("click", (e) => {
-  if (/\.$/.test(fieldTotal.innerHTML)) {
-    let modifiedTotal = fieldTotal.innerHTML.replace(/\.$/, e.target.innerHTML);
+  if (checker === false) {
+    if (/\.$/.test(fieldTotal.innerHTML)) {
+      let modifiedTotal = fieldTotal.innerHTML.replace(
+        /\.$/,
+        e.target.innerHTML
+      );
 
-    fieldTotal.innerHTML = modifiedTotal;
-  } else if (/[-+*/]$/.test(fieldTotal.innerHTML)) {
-    fieldTotal.innerHTML += `0${e.target.innerHTML}`;
+      fieldTotal.innerHTML = modifiedTotal;
+    } else if (/[-+*/]$/.test(fieldTotal.innerHTML)) {
+      fieldTotal.innerHTML += `0${e.target.innerHTML}`;
+    } else {
+      fieldTotal.innerHTML += pointBtn.innerHTML;
+    }
+    console.log("can point");
+
+    checker = true;
+  } else {
+    fieldTotal.innerHTML += "";
+    console.log("cannot point");
   }
-  // else if (/\./.test(fieldTotal.innerHTML)) {
-  //   console.log("here");
-  // }
-  else {
-    fieldTotal.innerHTML += pointBtn.innerHTML;
-  }
-
-  // ////////////////////// repeating dots issue
-  // let splitedTotal = fieldTotal.innerHTML.split(/[-+*/]/);
-  // console.log(splitedTotal);
-
-  // for (let i = 0; i < splitedTotal.length; i++) {
-  //   if (/(?<=\..*?)\./g.test(splitedTotal[i])) {
-  //     let newNum = splitedTotal[i].replace(/(?<=\..*?)\./g, "");
-  //     // num.replace(/(?<=\..*?)\./g, "");
-  //     // console.log(newNum);
-  //     splitedTotal.pop(splitedTotal[i]);
-  //     splitedTotal.push(newNum);
-  //     console.log(splitedTotal[i]);
-  //     // console.log("here");
-
-  //     let result = `${splitedTotal[i]}${/[-+*/]/}`;
-  //     result += result;
-  //     console.log(result);
-  //   }
-  // }
-
-  // console.log(splitedTotal);
-  // let symbol = '
-  // ////////////////
 });
 
 //percent btn
 
 btnPercent.addEventListener("click", (e) => {
-  // console.log(e);
-
-  // console.log(e.target.innerHTML);
   if (/[%]$/.test(fieldTotal.innerHTML)) {
     let modifiedTotal = fieldTotal.innerHTML.replace(
       /[%]$/,
@@ -123,6 +107,7 @@ btnPercent.addEventListener("click", (e) => {
 //delete all btn
 
 btnDeleteAll.addEventListener("click", () => {
+  checker = false;
   fieldTotal.innerHTML = localStorage.getItem("initialVal");
   localStorage.setItem("math-operation", 0);
   fieldHistory.classList.add("hidden");
@@ -133,7 +118,9 @@ btnDeleteAll.addEventListener("click", () => {
 
 btnDelOne.addEventListener("click", (e) => {
   let modifiedTotal;
+
   if (fieldTotal.innerHTML.length === 1) {
+    checker = false;
     modifiedTotal = fieldTotal.innerHTML.replace(/.$/, "0");
     fieldTotal.innerHTML = modifiedTotal;
   } else {
@@ -165,9 +152,15 @@ equalBtn.addEventListener("click", () => {
     fieldTotal.innerHTML = localStorage.getItem("initialVal");
   } else {
     let stringToNum = eval(localStorage.getItem("equasion"));
+    let result;
+
+    if (localStorage.getItem("equasion").length > 6) {
+      result = Number(stringToNum).toFixed(4);
+    } else {
+      result = Number(stringToNum);
+    }
 
     localStorage.setItem("math-operation", fieldTotal.innerHTML);
-    let result = Number(stringToNum);
 
     fieldHistory.innerHTML = localStorage.getItem("math-operation");
     fieldHistory.classList.remove("hidden");
